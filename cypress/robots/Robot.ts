@@ -17,6 +17,11 @@ export class RobotEyes extends BaseEyes{
       this.seesTextWithClass("a-dropdown-prompt",data.veryfyingTheCart)
 
     }
+    assertingDeliveryStatus()
+    {
+       
+       this.seesDomContainText("div[class='s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-results_1'] div[class='a-row a-size-base a-color-secondary s-align-children-center'] span:nth-child(2)",data.deliveryStatus)
+    }
     
     assertingTheAddress(){
 
@@ -49,7 +54,7 @@ export class RobotHands extends BaseHands{
         this.clickOnChildDomElementWithIndex("[class='a-unordered-list a-nostyle a-horizontal a-spacing-none']>li",0)
     }
     addingItemToCart(){
-        
+        this.wait(5000)
         this.clickOnId("add-to-cart-button")
     }
 
@@ -57,7 +62,7 @@ export class RobotHands extends BaseHands{
     {
         this.wait(5000)
        cy.contains('Cart').click({force:true})
-        //this.clickOnDomElement("#sw-gtc > span > a")
+        //this.clickOnDomElement("#attach-sidesheet-view-cart-button > span > input")
        
     }
     
@@ -108,25 +113,33 @@ export class RobotHands extends BaseHands{
       this.clickOnDomElement("#nav-logo-sprites")
 
         }
-
-    selectingPrimeCheckbox(){
-
-      this.clickOnDomElement("body > div:nth-child(1) > div:nth-child(30) > div:nth-child(12) > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > span:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > ul:nth-child(2) > li:nth-child(1) > span:nth-child(1) > a:nth-child(1) > div:nth-child(1) > label:nth-child(1) > i:nth-child(2)")
       
+    clickOnMobilesTab()
+    {
+        this.clickOnDomElement(".nav-a[href='/mobile-phones/b/?ie=UTF8&node=1389401031&ref_=nav_cs_mobiles']")
+    }    
 
-        }
+
+    selectPrimeCheckbox(){
+
+      this.wait(3000)
+      this.clickOnDomElement("#s-refinements > div:nth-child(3) > ul > li > span > a > div > label > i")
+      
+      }
 
     getFirstIteamDeliveryDate()
         {
+      this.wait(3000)
+      cy.get("div[class='s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-results_1'] div[class='a-row a-size-base a-color-secondary s-align-children-center'] span:nth-child(2)").then(function(text2){
+      cy.log(text2.text())
+        })
+      }
 
-            cy.get("div[class='s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-results_1'] div[class='a-row s-align-children-center']").then(function(text2){
-                cy.log(text2.text())
-            })
-        }
-    moveToLoginPage(){
+    clickOnSignInBtn(){
+
         this.clickOnId("nav-link-accountList-nav-line-1")
     }
-    logIn(){
+    signInPage(){
         console.log("ap_email")
         this.typeTextonId("ap_email",data.emailId)
         this.clickOnId("continue")

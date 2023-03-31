@@ -5,19 +5,20 @@ const robotEyes = new RobotEyes();
 const robotHands = new RobotHands();
 const dependencies = new Dependencies()
 
-    describe('Amazon assignment', ()=>{
+    describe('Amazon Assignment', ()=>{
 
         it("navigate to amazon page", () => {
             dependencies.visitAmazon();
             });
 
-            it("Tests with login",()=>{
+            it("Test with login",()=>{
 
-                robotHands.searchingMobiles()
-                robotHands.selectingPrimeCheckbox()
+                robotHands.clickOnMobilesTab()
+                robotHands.selectPrimeCheckbox()
                 robotHands.getFirstIteamDeliveryDate()
-                robotHands.moveToLoginPage()
-                robotHands.logIn()
+                //robotEyes.assertingDeliveryStatus()
+                robotHands.clickOnSignInBtn()
+                robotHands.signInPage()
                 robotHands.navigatingToOrders()
                 robotHands.selectingPastOneYearOrders()
                 robotHands.selectingTheYourAccount()
@@ -27,11 +28,10 @@ const dependencies = new Dependencies()
                 robotHands.selectingTheYourAccount()
                 robotHands.selectingThePaymentOption()
                 robotEyes.assertingPayment()
-        
                
-                   
-              
             })
+            
+           
     })
 
     })
